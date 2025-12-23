@@ -8,43 +8,65 @@
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background: #f7f2e8;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    position: relative;
+    overflow-x: hidden;
 }
 
-.card {
+/* Animais decorativos */
+.animal {
+    position: absolute;
+    opacity: 0.15;
+    z-index: 1;
+}
+
+.animal.top-left {
+    top: 30px;
+    left: 20px;
+}
+
+.animal.bottom-right {
+    bottom: 40px;
+    right: 20px;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
     background: #ffffff;
     padding: 30px;
-    border-radius: 16px;
+    border-radius: 18px;
     width: 100%;
-    max-width: 420px;
+    max-width: 440px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.15);
     border: 4px solid #2f7d32;
 }
 
-h1 {
-    text-align: center;
-    color: #2f7d32;
-    margin-bottom: 10px;
+/* Imagem do topo */
+.header-img {
+    width: 100%;
+    max-width: 320px;
+    display: block;
+    margin: 0 auto 20px;
 }
 
-.subtitle {
+h2 {
     text-align: center;
-    color: #6b4f2d;
-    font-size: 15px;
-    margin-bottom: 25px;
+    color: #2f7d32;
+    margin-bottom: 20px;
 }
 
 label {
     font-weight: 600;
-    margin-top: 15px;
+    margin-top: 18px;
     display: block;
     color: #4e342e;
 }
 
-input, select {
+input, textarea, select {
     width: 100%;
     padding: 12px;
     margin-top: 6px;
@@ -53,10 +75,14 @@ input, select {
     font-size: 15px;
 }
 
+textarea {
+    resize: vertical;
+}
+
 button {
     margin-top: 25px;
     width: 100%;
-    padding: 14px;
+    padding: 15px;
     background-color: #2f7d32;
     color: white;
     font-size: 17px;
@@ -73,25 +99,38 @@ button:hover {
 
 <body>
 
-<div class="card">
-    <h1>🌿 Confirmação de Presença</h1>
-    <div class="subtitle">
-        1 Aninho do <strong>Pedro Dômini</strong> 🎉
-    </div>
+<!-- Animais decorativos -->
+<img src="animal1.png" class="animal top-left" width="90">
+<img src="animal2.png" class="animal bottom-right" width="110">
 
-    <label>Seu nome</label>
-    <input type="text" id="nome" placeholder="Digite seu nome">
+<div class="container">
 
-    <label>Quem irá à festinha?</label>
-    <input type="text" id="pessoas" placeholder="Ex: João, Maria e Ana">
+    <!-- Imagem do convite -->
+    <img src="e104053e-bc15-4bee-810a-aaa66052a58f.png" class="header-img" alt="Convite Pedro Dômini">
 
+    <h2>🌿 Confirmação de Presença</h2>
+
+    <!-- PERGUNTA 1 -->
+    <label>Qual é o seu nome?</label>
+    <input type="text" id="nome" placeholder="Digite seu nome completo">
+
+    <!-- PERGUNTA 2 -->
+    <label>
+        Digite o nome completo das pessoas que irão com você, conforme nº de senha(s) disponível(eis),
+        e, caso tenha criança, informar idade:
+    </label>
+    <textarea id="pessoas" rows="4"
+        placeholder="Ex: Maria Silva, João Silva (5 anos)"></textarea>
+
+    <!-- CONFIRMAÇÃO -->
     <label>Confirma presença?</label>
     <select id="status">
         <option value="Confirmado">✅ Sim, estaremos presentes</option>
-        <option value="Não poderá comparecer">❌ Não poderemos ir</option>
+        <option value="Não poderá comparecer">❌ Não poderemos comparecer</option>
     </select>
 
     <button onclick="enviar()">Enviar confirmação 💚</button>
+
 </div>
 
 <script>
@@ -110,7 +149,7 @@ function enviar() {
 🎉 Aniversário de 1 ano do Pedro Dômini
 
 👤 Nome: ${nome}
-👨‍👩‍👧 Convidados: ${pessoas}
+👨‍👩‍👧 Pessoas que irão: ${pessoas}
 📌 Status: ${status}`;
 
     let telefone = "559885699508";
