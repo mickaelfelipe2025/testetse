@@ -1,138 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<title>Confirmação de Presença - Pedro Dômini</title>
-
-<style>
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f7f2e8;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow-x: hidden;
-}
-
-/* Animais decorativos */
-.animal {
-    position: absolute;
-    opacity: 0.15;
-    z-index: 1;
-}
-
-.animal.top-left {
-    top: 30px;
-    left: 20px;
-}
-
-.animal.bottom-right {
-    bottom: 40px;
-    right: 20px;
-}
-
-.container {
-    position: relative;
-    z-index: 2;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 18px;
-    width: 100%;
-    max-width: 440px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-    border: 4px solid #2f7d32;
-}
-
-/* Imagem do topo */
-.header-img {
-    width: 100%;
-    max-width: 320px;
-    display: block;
-    margin: 0 auto 20px;
-}
-
-h2 {
-    text-align: center;
-    color: #2f7d32;
-    margin-bottom: 20px;
-}
-
-label {
-    font-weight: 600;
-    margin-top: 18px;
-    display: block;
-    color: #4e342e;
-}
-
-input, textarea, select {
-    width: 100%;
-    padding: 12px;
-    margin-top: 6px;
-    border-radius: 8px;
-    border: 1px solid #cfcfcf;
-    font-size: 15px;
-}
-
-textarea {
-    resize: vertical;
-}
-
-button {
-    margin-top: 25px;
-    width: 100%;
-    padding: 15px;
-    background-color: #2f7d32;
-    color: white;
-    font-size: 17px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #256428;
-}
-</style>
-</head>
-
-<body>
-
-<!-- Animais decorativos -->
-<img src="animal1.png" class="animal top-left" width="90">
-<img src="animal2.png" class="animal bottom-right" width="110">
-
-<div class="container">
-
-    <!-- Imagem do convite -->
-    <img src="e104053e-bc15-4bee-810a-aaa66052a58f.png" class="header-img" alt="Convite Pedro Dômini">
-
-    <h2>🌿 Confirmação de Presença</h2>
-
-    <!-- PERGUNTA 1 -->
-    <label>Qual é o seu nome?</label>
-    <input type="text" id="nome" placeholder="Digite seu nome completo">
-
-    <!-- PERGUNTA 2 -->
-    <label>
-        Digite o nome completo das pessoas que irão com você, conforme nº de senha(s) disponível(eis),
-        e, caso tenha criança, informar idade:
-    </label>
-    <textarea id="pessoas" rows="4"
-        placeholder="Ex: Maria Silva, João Silva (5 anos)"></textarea>
-
-    <!-- CONFIRMAÇÃO -->
-    <label>Confirma presença?</label>
-    <select id="status">
-        <option value="Confirmado">✅ Sim, estaremos presentes</option>
-        <option value="Não poderá comparecer">❌ Não poderemos comparecer</option>
-    </select>
-
-    <button onclick="enviar()">Enviar confirmação 💚</button>
-
-</div>
-
 <script>
 function enviar() {
     let nome = document.getElementById("nome").value;
@@ -144,6 +9,20 @@ function enviar() {
         return;
     }
 
+    /* ENVIO PARA GOOGLE PLANILHAS */
+    fetch("https://script.google.com/macros/s/AKfycbycGU_uswG2v4Ke_OZzs6PEFed_fe0HBZAVD8a2yEItT0GPf2FYoNEEtVdfNHfGx90E/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body:
+            "nome=" + encodeURIComponent(nome) +
+            "&pessoas=" + encodeURIComponent(pessoas) +
+            "&status=" + encodeURIComponent(status)
+    });
+
+    /* ENVIO PARA WHATSAPP */
     let mensagem =
 `🌿 *CONFIRMAÇÃO DE PRESENÇA* 🌿
 🎉 Aniversário de 1 ano do Pedro Dômini
@@ -154,10 +33,8 @@ function enviar() {
 
     let telefone = "559885699508";
     let url = "https://wa.me/" + telefone + "?text=" + encodeURIComponent(mensagem);
-
     window.open(url, "_blank");
+
+    alert("Confirmação enviada com sucesso 💚");
 }
 </script>
-
-</body>
-</html>
