@@ -2,29 +2,38 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Confirmação de Presença</title>
+<title>Confirmação de Presença - Pedro Dômini</title>
 
 <style>
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #f2f2f2, #dcdcdc);
+    background: #f7f2e8;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.box {
-    background: white;
+.card {
+    background: #ffffff;
     padding: 30px;
-    border-radius: 12px;
+    border-radius: 16px;
     width: 100%;
     max-width: 420px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    border: 4px solid #2f7d32;
 }
 
 h1 {
     text-align: center;
+    color: #2f7d32;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #6b4f2d;
+    font-size: 15px;
     margin-bottom: 25px;
 }
 
@@ -32,14 +41,15 @@ label {
     font-weight: 600;
     margin-top: 15px;
     display: block;
+    color: #4e342e;
 }
 
 input, select {
     width: 100%;
     padding: 12px;
     margin-top: 6px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    border-radius: 8px;
+    border: 1px solid #cfcfcf;
     font-size: 15px;
 }
 
@@ -47,38 +57,41 @@ button {
     margin-top: 25px;
     width: 100%;
     padding: 14px;
-    background-color: #25D366;
+    background-color: #2f7d32;
     color: white;
     font-size: 17px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #1ebc59;
+    background-color: #256428;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box">
-    <h1>🎉 Confirmação de Presença</h1>
+<div class="card">
+    <h1>🌿 Confirmação de Presença</h1>
+    <div class="subtitle">
+        1 Aninho do <strong>Pedro Dômini</strong> 🎉
+    </div>
 
     <label>Seu nome</label>
-    <input type="text" id="nome" placeholder="Digite seu nome" required>
+    <input type="text" id="nome" placeholder="Digite seu nome">
 
-    <label>Quem irá à festa?</label>
-    <input type="text" id="pessoas" placeholder="Ex: João e Maria">
+    <label>Quem irá à festinha?</label>
+    <input type="text" id="pessoas" placeholder="Ex: João, Maria e Ana">
 
-    <label>Você confirma presença?</label>
+    <label>Confirma presença?</label>
     <select id="status">
-        <option value="Confirmado">✅ Sim, estarei presente</option>
-        <option value="Não poderá comparecer">❌ Não poderei ir</option>
+        <option value="Confirmado">✅ Sim, estaremos presentes</option>
+        <option value="Não poderá comparecer">❌ Não poderemos ir</option>
     </select>
 
-    <button onclick="enviar()">Enviar confirmação</button>
+    <button onclick="enviar()">Enviar confirmação 💚</button>
 </div>
 
 <script>
@@ -87,20 +100,21 @@ function enviar() {
     let pessoas = document.getElementById("pessoas").value;
     let status = document.getElementById("status").value;
 
-    if(nome === "") {
-        alert("Por favor, informe seu nome.");
+    if (nome === "") {
+        alert("Por favor, informe seu nome 😊");
         return;
     }
 
-    let texto = 
-`🎉 *CONFIRMAÇÃO DE PRESENÇA* 🎉
+    let mensagem =
+`🌿 *CONFIRMAÇÃO DE PRESENÇA* 🌿
+🎉 Aniversário de 1 ano do Pedro Dômini
 
 👤 Nome: ${nome}
-👨‍👩‍👧 Quem vai: ${pessoas}
+👨‍👩‍👧 Convidados: ${pessoas}
 📌 Status: ${status}`;
 
-    let telefone = "5598981876185";
-    let url = "https://wa.me/" + telefone + "?text=" + encodeURIComponent(texto);
+    let telefone = "559885699508";
+    let url = "https://wa.me/" + telefone + "?text=" + encodeURIComponent(mensagem);
 
     window.open(url, "_blank");
 }
