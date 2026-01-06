@@ -1,137 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Office Net | Curso</title>
+<meta charset="UTF-8">
+<title>Office Net | Vídeos do Curso</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-:root{
-  --bg:#F0FAF0; --text:#1f2d1f; --card:#fff; --muted:#5f6f5f;
-  --green:#3CAA28; --gold:#BE961E; --shadow:0 14px 35px rgba(0,0,0,.10);
-  --radius:22px;
-}
-@media (prefers-color-scheme: dark){
-  :root{--bg:#0f1a12;--text:#e8f5e8;--card:#16241a;--muted:#9fb3a0;--shadow:0 18px 40px rgba(0,0,0,.45)}
-}
-body{background:var(--bg);color:var(--text)}
-
-header{
-  background:linear-gradient(90deg,var(--green),var(--gold));
-  padding:22px 25px;
-  display:flex;align-items:center;justify-content:center;position:relative
-}
-.brand{position:absolute;left:25px}
-.brand img{height:42px}
-header h1{color:#fff;font-size:20px}
-
-.container{max-width:1050px;margin:26px auto 70px;padding:0 20px}
-
-.breadcrumb{font-size:13px;color:var(--muted);margin-bottom:12px}
-.breadcrumb a{color:inherit;text-decoration:none;font-weight:800}
-
-h2{font-size:28px;line-height:1.2}
-
-.card{
-  margin-top:14px;
-  background:var(--card);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  border:1px solid rgba(0,0,0,.06);
-  overflow:hidden;
-}
-@media (prefers-color-scheme: dark){ .card{border-color:rgba(255,255,255,.10)} }
-
-/* Player responsivo */
-.player{position:relative;padding-bottom:56.25%;height:0;background:#000}
-.player iframe{position:absolute;inset:0;width:100%;height:100%}
-
-.content{padding:18px 20px 22px}
-.desc{margin-top:8px;color:var(--muted);line-height:1.6}
-
-.actions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
-.btn{
-  display:inline-block;text-decoration:none;font-weight:900;font-size:13px;
-  padding:11px 16px;border-radius:999px;
-}
-.btn.primary{background:linear-gradient(90deg,var(--green),var(--gold));color:#fff}
-.btn.secondary{
-  background:rgba(0,0,0,.06);
-  color:var(--text);
-  border:1px solid rgba(0,0,0,.08);
-}
-@media (prefers-color-scheme: dark){
-  .btn.secondary{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #F0FAF0;
+    color: #1f2d1f;
 }
 
-.section{
-  margin-top:18px;
-  padding:16px 18px;
-  border-radius:18px;
-  border:1px dashed rgba(0,0,0,.18);
-  color:var(--muted);
+header {
+    background: linear-gradient(90deg, #3CAA28, #BE961E);
+    padding: 20px;
+    color: #fff;
+    text-align: center;
 }
-@media (prefers-color-scheme: dark){ .section{border-color:rgba(255,255,255,.16)} }
-.section h3{color:var(--text);margin-bottom:8px;font-size:16px}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.video {
+    margin-bottom: 30px;
+    background: #fff;
+    padding: 18px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.1);
+}
+
+.video h3 {
+    margin-bottom: 12px;
+}
+
+.player {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.player iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="brand">
-    <img src="https://office-net-ofc.github.io/Pagina-de-treinamentos/img/Logo_Branca_Pequena-sem-fundo.png" alt="Office Net">
-  </div>
-  <h1>Universidade Office Net</h1>
+    <h1>Vídeos do Curso</h1>
 </header>
 
-<main class="container">
-
-  <div class="breadcrumb">
-    <a href="index.html">← Voltar ao catálogo</a>
-  </div>
-
-  <h2 id="title">Carregando...</h2>
-
-  <section class="card">
-    <div class="player">
-      <iframe id="player" src="" frameborder="0" allowfullscreen></iframe>
-    </div>
-
-    <div class="content">
-      <p class="desc" id="desc">Aguarde...</p>
-
-      <div class="actions">
-        <a class="btn secondary" href="index.html">Voltar</a>
-        <a class="btn primary" href="#materiais">Ver materiais</a>
-      </div>
-
-      <div class="section" id="materiais">
-        <h3>Materiais do curso</h3>
-        <p>Coloque aqui links para PDFs, procedimentos, checklists e documentos internos.</p>
-      </div>
-    </div>
-  </section>
-
-</main>
+<main class="container" id="videos"></main>
 
 <script>
+const cursos = {
+    onboarding: [
+        { titulo: "Boas-vindas Office Net", video: "OKpSAzB66hU" },
+        { titulo: "Cultura e Processos", video: "GtV17lWjWFo" }
+    ],
+    sistema: [
+        { titulo: "Visão Geral do Sistema", video: "o7exS0xj3v0" }
+    ]
+};
+
 const params = new URLSearchParams(window.location.search);
-const v = params.get("v");
-const t = params.get("t");
+const curso = params.get("curso") || "onboarding";
 
-document.getElementById("title").textContent = t || "Curso";
-document.getElementById("desc").textContent =
-  "Assista ao vídeo abaixo e, ao finalizar, confira os materiais e procedimentos do curso.";
+const container = document.getElementById("videos");
 
-if (v) {
-  document.getElementById("player").src = `https://www.youtube.com/embed/${v}`;
-} else {
-  document.getElementById("player").src = "";
-  document.getElementById("desc").textContent =
-    "Vídeo não encontrado. Volte ao catálogo e selecione um curso.";
-}
+(cursos[curso] || []).forEach(v => {
+    container.innerHTML += `
+        <div class="video">
+            <h3>${v.titulo}</h3>
+            <div class="player">
+                <iframe src="https://www.youtube.com/embed/${v.video}"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+});
 </script>
 
 </body>
