@@ -3,13 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Office Net | Catálogo de Cursos</title>
+<title>Office Net | Curso</title>
 
 <style>
-/* ================= RESET ================= */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
 
-/* ================= VARIÁVEIS ================= */
 :root{
   --bg:#F0FAF0;
   --text:#1f2d1f;
@@ -18,7 +16,6 @@
   --green:#3CAA28;
   --gold:#BE961E;
   --shadow:0 14px 35px rgba(0,0,0,.10);
-  --ring:0 0 0 3px rgba(60,170,40,.22);
   --radius:22px;
 }
 
@@ -32,248 +29,155 @@
   }
 }
 
-body{
-  background: var(--bg);
-  color: var(--text);
-  transition: .35s ease;
-}
+body{ background:var(--bg); color:var(--text); }
 
-/* ================= HEADER ================= */
 header{
   background: linear-gradient(90deg, var(--green), var(--gold));
-  padding: 22px 25px;
+  padding: 20px 25px;
   display:flex;
   align-items:center;
   justify-content:center;
   position:relative;
-  overflow:hidden;
 }
 
-header::before{
-  content:"";
-  position:absolute; inset:-60px -80px auto auto;
-  width:240px; height:240px;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 60%);
-  transform: rotate(10deg);
-}
-
-.brand{position:absolute;left:25px;display:flex;align-items:center;gap:10px}
+.brand{position:absolute;left:25px}
 .brand img{height:42px}
+header h1{color:#fff;font-size:20px}
 
-header h1{color:#fff;font-size:22px;letter-spacing:.2px}
-
-/* ================= HERO ================= */
-.hero{
-  max-width:1200px;
-  margin: 34px auto 14px;
+.container{
+  max-width: 1050px;
+  margin: 26px auto 70px;
   padding: 0 20px;
-  display:grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 18px;
-  align-items:end;
 }
 
-.hero .title h2{
-  font-size: 34px;
-  line-height: 1.1;
+.breadcrumb{
+  font-size: 13px;
+  color: var(--muted);
   margin-bottom: 10px;
 }
 
-.hero .title p{
-  font-size: 16px;
-  color: var(--muted);
-  max-width: 680px;
+.breadcrumb a{
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
 }
 
-.hero .panel{
-  background: linear-gradient(180deg, rgba(60,170,40,.10), rgba(190,150,30,.08));
-  border: 1px solid rgba(0,0,0,.06);
-  border-radius: var(--radius);
-  padding: 14px;
-  box-shadow: var(--shadow);
+.top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap:wrap;
+}
+
+h2{ font-size: 28px; line-height: 1.2; }
+
+.pills{
+  display:flex;
+  gap: 8px;
+  flex-wrap:wrap;
+}
+
+.pill{
+  background: rgba(0,0,0,.70);
+  color:#fff;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.pill.alt{
+  background: rgba(255,255,255,.85);
+  color: var(--text);
+  border: 1px solid rgba(0,0,0,.08);
 }
 
 @media (prefers-color-scheme: dark){
-  .hero .panel{ border-color: rgba(255,255,255,.08); }
+  .pill.alt{ background: rgba(22,36,26,.90); border-color: rgba(255,255,255,.12); }
 }
 
-.controls{
+.card{
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,.06);
+  overflow:hidden;
+}
+
+@media (prefers-color-scheme: dark){
+  .card{ border-color: rgba(255,255,255,.08); }
+}
+
+/* Player responsivo */
+.player{
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  background:#000;
+}
+.player iframe{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+}
+
+.content{
+  padding: 18px 20px 20px;
+}
+
+.desc{
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.actions{
+  margin-top: 16px;
   display:flex;
   gap: 10px;
   flex-wrap:wrap;
 }
 
-.input, .select{
-  flex: 1;
-  min-width: 180px;
-  background: var(--card);
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  font-weight: 900;
+  font-size: 13px;
+  padding: 11px 16px;
+  border-radius: 999px;
   border: 1px solid rgba(0,0,0,.08);
-  border-radius: 14px;
-  padding: 12px 12px;
-  outline: none;
+  background: rgba(255,255,255,.6);
   color: var(--text);
 }
 
 @media (prefers-color-scheme: dark){
-  .input, .select{ border-color: rgba(255,255,255,.10); }
+  .btn{ border-color: rgba(255,255,255,.12); background: rgba(22,36,26,.55); }
 }
 
-.input:focus, .select:focus{ box-shadow: var(--ring); border-color: rgba(60,170,40,.35); }
-
-.meta{
-  margin-top: 10px;
-  font-size: 13px;
-  color: var(--muted);
-  display:flex;
-  justify-content:space-between;
-  gap: 10px;
-}
-
-/* ================= CONTAINER / GRID ================= */
-.container{
-  max-width:1200px;
-  margin: 18px auto 80px;
-  padding: 0 20px;
-}
-
-.course-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-  gap: 26px;
-}
-
-/* ================= CARD ================= */
-.course-card{
-  background: var(--card);
-  border-radius: var(--radius);
-  overflow:hidden;
-  box-shadow: var(--shadow);
-  text-decoration:none;
-  color:inherit;
-  position:relative;
-  transform: translateY(18px);
-  opacity: 0;
-  animation: reveal .65s ease forwards;
-  border: 1px solid rgba(0,0,0,.06);
-}
-
-@media (prefers-color-scheme: dark){
-  .course-card{ border-color: rgba(255,255,255,.08); }
-}
-
-.course-card:focus{ outline:none; box-shadow: var(--shadow), var(--ring); }
-
-.course-card:hover .course-cover img{ transform: scale(1.12); }
-.course-card:hover .shine{ opacity: .85; transform: translateX(0); }
-
-.course-card:nth-child(1){animation-delay:.05s}
-.course-card:nth-child(2){animation-delay:.12s}
-.course-card:nth-child(3){animation-delay:.19s}
-.course-card:nth-child(4){animation-delay:.26s}
-.course-card:nth-child(5){animation-delay:.33s}
-.course-card:nth-child(6){animation-delay:.40s}
-
-@keyframes reveal{ to{ transform: translateY(0); opacity: 1; } }
-
-/* ================= COVER ================= */
-.course-cover{
-  position:relative;
-  height: 182px;
-  overflow:hidden;
-  background:#000;
-}
-
-.course-cover img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:.6s ease;
-}
-
-/* “toque especial”: brilho discreto */
-.shine{
-  position:absolute; inset:0;
-  background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,.22), transparent 60%);
-  transform: translateX(-35%);
-  opacity: 0;
-  transition: .55s ease;
-  pointer-events:none;
-}
-
-/* ================= TAG + BADGE ================= */
-.badges{
-  position:absolute;
-  top: 12px; left: 12px;
-  display:flex;
-  gap: 8px;
-  align-items:center;
-}
-
-.tag{
-  background: rgba(0,0,0,.70);
+.btn.primary{
+  border: none;
   color:#fff;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  backdrop-filter: blur(6px);
-}
-
-.level{
-  background: rgba(255,255,255,.92);
-  color:#1f2d1f;
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-@media (prefers-color-scheme: dark){
-  .level{ background: rgba(22,36,26,.90); color: var(--text); border: 1px solid rgba(255,255,255,.12); }
-}
-
-/* ================= INFO ================= */
-.course-info{ padding: 20px; }
-.course-info h3{ font-size: 18px; margin-bottom: 6px; }
-.course-info p{ font-size: 14px; color: var(--muted); line-height: 1.5; }
-
-.course-footer{
-  margin-top: 14px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 10px;
-}
-
-.course-action{
-  display:inline-block;
-  padding: 10px 16px;
   background: linear-gradient(90deg, var(--green), var(--gold));
-  color:#fff;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 800;
 }
 
-.duration{
-  font-size: 13px;
+.next{
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px dashed rgba(0,0,0,.18);
   color: var(--muted);
   display:flex;
-  align-items:center;
-  gap: 6px;
+  justify-content:space-between;
+  gap: 12px;
+  flex-wrap:wrap;
 }
 
-/* ================= FOOTER ================= */
-footer{
-  text-align:center;
-  padding: 30px;
-  font-size: 13px;
-  color: var(--muted);
+@media (prefers-color-scheme: dark){
+  .next{ border-color: rgba(255,255,255,.16); }
 }
 
-/* ================= RESPONSIVO ================= */
-@media (max-width: 920px){
-  .hero{ grid-template-columns: 1fr; }
-}
+.next strong{ color: var(--text); }
 </style>
 </head>
 
@@ -283,134 +187,94 @@ footer{
   <div class="brand">
     <img src="https://office-net-ofc.github.io/Pagina-de-treinamentos/img/Logo_Branca_Pequena-sem-fundo.png" alt="Office Net">
   </div>
-  <h1>Cursos Internos</h1>
+  <h1>Universidade Office Net</h1>
 </header>
 
-<section class="hero">
-  <div class="title">
-    <h2>Universidade Office Net</h2>
-    <p>Escolha um curso abaixo. Cada card abre uma página exclusiva com o vídeo, descrição e navegação para o próximo conteúdo.</p>
-  </div>
-
-  <div class="panel">
-    <div class="controls">
-      <input id="q" class="input" type="search" placeholder="Buscar curso... (ex: onboarding, sistema, atendimento)">
-      <select id="tag" class="select">
-        <option value="all">Todas as trilhas</option>
-        <option value="Obrigatório">Obrigatório</option>
-        <option value="Técnico">Técnico</option>
-        <option value="Atendimento">Atendimento</option>
-      </select>
-    </div>
-    <div class="meta">
-      <span id="count">0 cursos</span>
-      <span>Dica: use a busca + filtro</span>
-    </div>
-  </div>
-</section>
-
 <main class="container">
-  <div id="grid" class="course-grid"></div>
+
+  <div class="breadcrumb">
+    <a href="index.html">Cursos</a> / <span id="bcTitle">Carregando...</span>
+  </div>
+
+  <div class="top">
+    <div>
+      <h2 id="title">Carregando...</h2>
+      <p class="desc" id="desc"></p>
+    </div>
+
+    <div class="pills">
+      <span class="pill" id="tag"></span>
+      <span class="pill alt" id="nivel"></span>
+      <span class="pill alt" id="duracao"></span>
+    </div>
+  </div>
+
+  <section class="card">
+    <div class="player">
+      <iframe id="player" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="content">
+      <div class="actions">
+        <a class="btn" href="index.html">← Voltar ao catálogo</a>
+        <a class="btn primary" id="btnNext" href="#">Próximo curso →</a>
+      </div>
+
+      <div class="next" id="nextBox" style="display:none;">
+        <span>Próximo: <strong id="nextTitle"></strong></span>
+        <span>Trilha: <strong id="nextTag"></strong></span>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<footer>
-  © 2025 Office Net — Universidade Corporativa
-</footer>
-
 <script>
-/**
- * Catálogo de cursos (edite aqui para adicionar/remover cursos)
- * id: usado para abrir o curso na página curso.html
- */
 const cursos = [
-  {
-    id: "onboarding",
-    tag: "Obrigatório",
-    nivel: "N1",
-    titulo: "Onboarding Office Net",
-    desc: "Conheça a empresa, processos internos e padrões de atendimento.",
-    video: "OKpSAzB66hU",
-    duracao: "~12 min"
-  },
-  {
-    id: "sistema",
-    tag: "Técnico",
-    nivel: "N1",
-    titulo: "Sistema de Gerenciamento",
-    desc: "Aprenda a operar o sistema interno com eficiência e segurança.",
-    video: "GtV17lWjWFo",
-    duracao: "~18 min"
-  },
-  {
-    id: "atendimento",
-    tag: "Atendimento",
-    nivel: "N1",
-    titulo: "Atendimento ao Cliente",
-    desc: "Boas práticas, postura profissional e excelência no suporte.",
-    video: "o7exS0xj3v0",
-    duracao: "~15 min"
-  },
-  {
-    id: "paramount",
-    tag: "Técnico",
-    nivel: "N2",
-    titulo: "Acesso e Funcionalidades (Exemplo)",
-    desc: "Conteúdo extra para padronizar procedimentos e reduzir erros.",
-    video: "wXRPw_ftaS4",
-    duracao: "~10 min"
-  }
+  { id:"onboarding", tag:"Obrigatório", nivel:"N1", titulo:"Onboarding Office Net",
+    desc:"Conheça a empresa, processos internos e padrões de atendimento.",
+    video:"OKpSAzB66hU", duracao:"~12 min" },
+
+  { id:"sistema", tag:"Técnico", nivel:"N1", titulo:"Sistema de Gerenciamento",
+    desc:"Aprenda a operar o sistema interno com eficiência e segurança.",
+    video:"GtV17lWjWFo", duracao:"~18 min" },
+
+  { id:"atendimento", tag:"Atendimento", nivel:"N1", titulo:"Atendimento ao Cliente",
+    desc:"Boas práticas, postura profissional e excelência no suporte.",
+    video:"o7exS0xj3v0", duracao:"~15 min" },
+
+  { id:"paramount", tag:"Técnico", nivel:"N2", titulo:"Acesso e Funcionalidades (Exemplo)",
+    desc:"Conteúdo extra para padronizar procedimentos e reduzir erros.",
+    video:"wXRPw_ftaS4", duracao:"~10 min" },
 ];
 
-const grid = document.getElementById("grid");
-const q = document.getElementById("q");
-const tag = document.getElementById("tag");
-const count = document.getElementById("count");
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
 
-function cardHTML(c){
-  const thumb = `https://img.youtube.com/vi/${c.video}/hqdefault.jpg`;
-  const url = `curso.html?id=${encodeURIComponent(c.id)}`;
-  return `
-    <a class="course-card" href="${url}" aria-label="Abrir curso: ${c.titulo}">
-      <div class="course-cover">
-        <img src="${thumb}" alt="${c.titulo}">
-        <div class="shine"></div>
-        <div class="badges">
-          <span class="tag">${c.tag}</span>
-          <span class="level">${c.nivel}</span>
-        </div>
-      </div>
+const cursoIndex = cursos.findIndex(c => c.id === id);
+const curso = cursos[cursoIndex] || cursos[0];
 
-      <div class="course-info">
-        <h3>${c.titulo}</h3>
-        <p>${c.desc}</p>
+document.title = `Office Net | ${curso.titulo}`;
 
-        <div class="course-footer">
-          <span class="course-action">Ver curso</span>
-          <span class="duration">⏱ ${c.duracao}</span>
-        </div>
-      </div>
-    </a>
-  `;
-}
+document.getElementById("title").innerText = curso.titulo;
+document.getElementById("bcTitle").innerText = curso.titulo;
+document.getElementById("desc").innerText = curso.desc;
 
-function render(){
-  const term = (q.value || "").trim().toLowerCase();
-  const filtro = tag.value;
+document.getElementById("tag").innerText = curso.tag;
+document.getElementById("nivel").innerText = curso.nivel;
+document.getElementById("duracao").innerText = curso.duracao;
 
-  const filtrados = cursos.filter(c => {
-    const bateTermo = !term || (c.titulo + " " + c.desc + " " + c.tag).toLowerCase().includes(term);
-    const bateTag = (filtro === "all") || (c.tag === filtro);
-    return bateTermo && bateTag;
-  });
+// Player
+document.getElementById("player").src = `https://www.youtube.com/embed/${curso.video}`;
 
-  grid.innerHTML = filtrados.map(cardHTML).join("");
-  count.textContent = `${filtrados.length} curso${filtrados.length === 1 ? "" : "s"}`;
-}
+// Próximo curso
+const next = cursos[(cursoIndex + 1) % cursos.length];
+const btnNext = document.getElementById("btnNext");
+btnNext.href = `curso.html?id=${encodeURIComponent(next.id)}`;
 
-q.addEventListener("input", render);
-tag.addEventListener("change", render);
-
-render();
+const nextBox = document.getElementById("nextBox");
+nextBox.style.display = "flex";
+document.getElementById("nextTitle").innerText = next.titulo;
+document.getElementById("nextTag").innerText = next.tag;
 </script>
 
 </body>
